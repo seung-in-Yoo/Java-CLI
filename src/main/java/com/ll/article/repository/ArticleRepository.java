@@ -25,4 +25,8 @@ public class ArticleRepository {
                 .findFirst()
                 .orElse(null); // 찾지못하면 null
     }
+
+    public void delete(Article article) {
+        articles.remove(article);
+    }
 }
