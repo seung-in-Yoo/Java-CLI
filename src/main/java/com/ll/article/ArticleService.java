@@ -1,5 +1,14 @@
 package com.ll.article;
 
 public class ArticleService {
-    // TODO: 비즈니스 로직 구현
+    ArticleRepository articleRepository;
+
+    public ArticleService() {
+        articleRepository = new ArticleRepository();
+    }
+
+    public Article write(String title, String content) {
+        Article article = new Article(title, content);
+        return articleRepository.save(article);
+    }
 }

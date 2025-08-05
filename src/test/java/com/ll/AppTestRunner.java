@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class AppTestRunner {
 
     public static String run(String input) {
-        Scanner scanner = new Scanner(input);
+        Scanner scanner = new Scanner(input + "\nexit");
 
         ByteArrayOutputStream output = setOutToByteArray();
         new App(scanner).run();

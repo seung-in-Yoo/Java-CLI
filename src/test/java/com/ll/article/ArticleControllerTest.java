@@ -17,6 +17,6 @@ public class ArticleControllerTest {
                 자바 텍스트 게시판 만들기
                 """);
 
-        assertThat(rs).contains("게시글이 등록되었습니다.");
+        assertThat(rs).contains("1번 게시글이 등록되었습니다.");
     }
 }
