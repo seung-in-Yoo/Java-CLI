@@ -20,4 +20,8 @@ public class ArticleService {
         Collections.reverse(reversed);
         return reversed;
     }
+
+    public Article findArticleById(int id) {
+        return repository.findById(id);
+    }
 }

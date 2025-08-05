@@ -18,4 +18,11 @@ public class ArticleRepository {
     public List<Article> findAll() {
         return List.copyOf(articles); // copyOf 사용하여 원본 수정 불가능하도록 처리
     }
+
+    public Article findById(int id) {
+        return articles.stream()
+                .filter(article -> article.getId() == id)
+                .findFirst()
+                .orElse(null); // 찾지못하면 null
+    }
 }
