@@ -26,4 +26,9 @@ public class Article {
     public static Article of(int id, String title, String content) {
         return new Article(id, title, content);
     }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
