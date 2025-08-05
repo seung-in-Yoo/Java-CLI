@@ -18,8 +18,13 @@ public class ArticleService {
         return articleRepository.getList();
     }
 
-    public Article getDetail(int id) {
-        return articleRepository.getDetail(id);
+    public Article getArticle(int id) {
+        return articleRepository.getArticle(id);
     }
 
+    public void update(Article article, String updateTitle, String updateContent) {
+        article.setTitle(updateTitle);
+        article.setContent(updateContent);
+        articleRepository.save(article);
+    }
 }

@@ -38,7 +38,7 @@ public class ArticleController {
             System.out.println("검색할 게시글의 id를 입력해주세요.");
             return;
         }
-        Article article = articleService.getDetail(rq.getActionId());
+        Article article = articleService.getArticle(rq.getActionId());
         if (article == null) {
             System.out.println(rq.getActionId() + "번 게시글은 없습니다.");
             return;
@@ -47,6 +47,24 @@ public class ArticleController {
         System.out.println("제목 : " + article.getTitle());
         System.out.println("내용 : " + article.getContent());
         System.out.println("등록일 : " + article.getRegDate());
+    }
+
+    public void actionUpdate(Rq rq) {
+        if (rq.getActionId() == -1) {
+            System.out.println("수정할 게시글의 id를 입력해주세요.");
+            return;
+        }
+        Article article = articleService.getArticle(rq.getActionId());
+        if (article == null) {
+            System.out.println(rq.getActionId() + "번 게시글은 없습니다.");
+            return;
+        }
+        System.out.print("제목 (현재: " + article.getTitle() + ") : ");
+        String updateTitle = scanner.nextLine();
+        System.out.print("내용 (현재: " + article.getContent() + ") : ");
+        String updateContent = scanner.nextLine();
+        articleService.update(article, updateTitle, updateContent);
+        System.out.println(article.getId() + "번 게시글이 수정되었습니다.");
     }
 
     public void actionExit() {

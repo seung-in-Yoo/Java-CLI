@@ -9,9 +9,11 @@ public class ArticleRepository {
     int lastId = 0;
 
     public Article save(Article article) {
-        article.setId(++lastId);
-        article.setRegDate(String.valueOf(LocalDate.now()));
-        articles.add(article);
+        if (article.isNew()) {
+            article.setId(++lastId);
+            article.setRegDate(String.valueOf(LocalDate.now()));
+            articles.add(article);
+        }
         return article;
     }
 
@@ -19,7 +21,7 @@ public class ArticleRepository {
         return articles.reversed();
     }
 
-    public Article getDetail(int id) {
+    public Article getArticle(int id) {
         return articles.stream()
                 .filter(a -> a.getId() == id)
                 .findFirst()

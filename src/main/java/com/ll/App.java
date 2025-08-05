@@ -24,6 +24,7 @@ public class App {
                 case "write" -> articleController.actionWrite();
                 case "list" -> articleController.actionList();
                 case "detail" -> articleController.actionDetail(rq);
+                case "update" -> articleController.actionUpdate(rq);
                 case "exit" -> {
                     articleController.actionExit();
                     return;
