@@ -36,6 +36,7 @@ public class ArticleController {
         System.out.print("내용: ");
         String content = scanner.nextLine();
         Article article = articleService.write(title, content);
+        System.out.println("게시글이 등록되었습니다.");
     }
 
     public void list() {

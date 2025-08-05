@@ -5,8 +5,8 @@ import java.util.List;
 
 public class ArticleRepository {
     // TODO: 게시글 저장 및 조회 등 기능 구현
-    private final List<Article> articles = new ArrayList<Article>();
-    private int lastId = 0;
+    private final List<Article> articles = new ArrayList<Article>(); // 데이터베이스 역할
+    private int lastId = 0; // 데이터베이스 내 primary key (id) 역할
 
     public Article save(String title, String content) {
         lastId++;
@@ -15,4 +15,26 @@ public class ArticleRepository {
         return article;
     }
 
+    public Article findById(int id) {
+        for (Article article : articles) {
+            if (article.getId() == id) {
+                return article;
+            }
+        }
+        return null;
+    }
+
+    public List<Article> findAll() {
+        return articles;
+    }
+
+    public Boolean deleteById(int id) {
+        for (Article article : articles) {
+            if (article.getId() == id) {
+                articles.remove(article);
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -7,7 +7,7 @@ public class Article {
     private int id;
     private String title;
     private String content;
-    private LocalTime regDate;
+    private final LocalTime regDate;
 
     public Article(int id, String title, String content) {
         this.id = id;
@@ -33,7 +33,7 @@ public class Article {
     public void setContent(String content) {
         this.content = content;
     }
-    public LocalTime getRegDate() {
-        return regDate;
+    public String getRegDate() {
+        return regDate.toString();
     }
 }
