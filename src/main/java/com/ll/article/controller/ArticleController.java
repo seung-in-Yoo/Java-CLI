@@ -44,50 +44,61 @@ public class ArticleController {
     // 게시글 상세 보기
     public void detail(Rq rq) {
         int id = rq.getParamId();
-        Article article = service.findArticleById(id);
 
-        if (article == null) {
-            System.out.println("해당 게시글이 존재하지 않습니다.");
-            return;
+        try {
+            Article article = service.findArticleById(id);
+            if (article == null) {
+                // NullPointerException 대신 명시적으로 예외 처리
+                throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다. ID=" + id);
+            }
+
+            System.out.println("번호: " + article.getId());
+            System.out.println("제목: " + article.getTitle());
+            System.out.println("내용: " + article.getContent());
+            System.out.println("등록일: " + article.getRegDate());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
-
-        System.out.println("번호: " + article.getId());
-        System.out.println("제목: " + article.getTitle());
-        System.out.println("내용: " + article.getContent());
-        System.out.println("등록일: " + article.getRegDate());
     }
 
     // 게시글 수정
     public void update(Rq rq) {
         int id = rq.getParamId();
-        Article article = service.findArticleById(id);
 
-        if (article == null) {
-            System.out.println("해당 게시글이 존재하지 않습니다.");
-            return;
+        try {
+            Article article = service.findArticleById(id);
+            if (article == null) {
+                // NullPointerException 대신 명시적으로 예외 처리
+                throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다. ID=" + id);
+            }
+
+            System.out.printf("제목 (현재: %s): ", article.getTitle());
+            String newTitle = sc.nextLine().trim();
+
+            System.out.printf("내용 (현재: %s): ", article.getContent());
+            String newContent = sc.nextLine().trim();
+
+            service.updateArticle(id, newTitle, newContent);
+            System.out.println("=> 게시글이 수정되었습니다.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
-
-        System.out.printf("제목 (현재: %s): ", article.getTitle());
-        String newTitle = sc.nextLine().trim();
-
-        System.out.printf("내용 (현재: %s): ", article.getContent());
-        String newContent = sc.nextLine().trim();
-
-        service.updateArticle(id, newTitle, newContent);
-        System.out.println("=> 게시글이 수정되었습니다.");
     }
 
     // 게시글 삭제
     public void delete(Rq rq) {
         int id = rq.getParamId();
-        Article article = service.findArticleById(id);
 
-        if (article == null) {
-            System.out.println("해당 게시글이 존재하지 않습니다.");
-            return;
+        try {
+            Article article = service.findArticleById(id);
+            if (article == null) {
+                // NullPointerException 대신 명시적으로 예외 처리
+                throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다. ID=" + id);
+            }
+            service.deleteArticle(id);
+            System.out.println("=> 게시글이 삭제되었습니다.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
-
-        service.deleteArticle(id);
-        System.out.println("=> 게시글이 삭제되었습니다.");
     }
 }

@@ -27,22 +27,11 @@ public class ArticleService {
 
     public void updateArticle(int id, String title, String content) {
         Article article = repository.findById(id);
-
-        if (article == null) {
-            // NullPointerException 대신 명시적으로 예외 처리
-            throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다. ID=" + id);
-        }
-
         article.update(title, content);
     }
 
     public void deleteArticle(int id) {
         Article article = repository.findById(id);
-        if (article == null) {
-            // NullPointerException 대신 명시적으로 예외 처리
-            throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다. ID=" + id);
-        }
-
         repository.delete(article);
     }
 }
