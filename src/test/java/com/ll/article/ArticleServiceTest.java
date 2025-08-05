@@ -1,12 +1,23 @@
 package com.ll.article;
 
+import com.ll.article.entity.Article;
+import com.ll.article.service.ArticleService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 public class ArticleServiceTest {
     @Test
-    @DisplayName("게시글 작성 테스트 (예시입니다.")
+    @DisplayName("게시글을 작성하면 Article 객체가 생성")
     void t1() {
-        // TODO: ArticleService 관련 TDD 테스트 작성
+        ArticleService service = new ArticleService();
+
+        Article article = service.write("제목1", "내용1");
+
+        assertThat(article).isNotNull();
+        assertThat(article.getId()).isEqualTo(1);
+        assertThat(article.getTitle()).isEqualTo("제목1");
+        assertThat(article.getContent()).isEqualTo("내용1");
+        assertThat(article.getRegDate()).isNotNull();
     }
 }
