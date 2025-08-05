@@ -1,5 +1,34 @@
 package com.ll.article;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArticleRepository {
-    // TODO: 게시글 저장 및 조회 등 기능 구현
+    private final List<Article> articles;
+    private int lastId;
+
+    ArticleRepository() {
+        articles = new ArrayList<Article>();
+        lastId = 1;
+    }
+
+    Article addArticleToList(String title, String content) {
+        return null;
+    }
+
+    Article findArticleFromList(int id) {
+        return null;
+    }
+
+    Article updateArticleInList(Article article) {
+        return null;
+    }
+
+    void deleteArticleFromList(int id) {
+    }
+
+    void showArticleList() {
+
+    }
+
 }

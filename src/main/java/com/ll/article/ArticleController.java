@@ -1,5 +1,33 @@
 package com.ll.article;
 
+import com.ll.Rq;
+
+import java.util.Scanner;
+
 public class ArticleController {
-    // TODO: 필요한 메서드 구현
+    private ArticleService articleService;
+
+    ArticleController(Scanner sc) {
+        articleService = new ArticleService(sc);
+    }
+
+    void actionWrite() {
+
+    }
+
+    void actionList() {
+
+    }
+
+    void actionDetail(Rq rq) {
+
+    }
+
+    void actionModify(Rq rq) {
+
+    }
+
+    void actionDelete(Rq rq) {
+
+    }
 }
