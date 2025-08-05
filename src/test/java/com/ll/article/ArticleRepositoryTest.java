@@ -103,4 +103,19 @@ public class ArticleRepositoryTest {
 
         assertThat(articleRepository.findAll()).isEqualTo(articles);
     }
+
+    @Test
+    @DisplayName("keyword를 통해 keyword가 포함된 제목이나 내용을 가진 게시물을 검색")
+    void t8() {
+        ArticleRepository articleRepository = new ArticleRepository();
+        articleRepository.save("test title 1", "test content 1");
+        articleRepository.save("test title 2", "test content 2");
+        articleRepository.save("test title 3", "test content 3");
+
+        Article searchArticle = articleRepository.findByTitleOrContent("2").get(0);
+
+        Article article = new Article(2, "test title 2", "test content 2");
+
+        assertThat(searchArticle).isEqualTo(article);
+    }
 }
