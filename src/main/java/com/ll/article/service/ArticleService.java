@@ -24,4 +24,13 @@ public class ArticleService {
     public Article findArticleById(int id) {
         return repository.findById(id);
     }
+
+    public void updateArticle(int id, String title, String content) {
+        Article article = repository.findById(id);
+
+        if (article != null) {
+            article.setTitle(title);
+            article.setContent(content);
+        }
+    }
 }
