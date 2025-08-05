@@ -6,9 +6,6 @@ public class ArticleService {
     // TODO: 비즈니스 로직 구현
     ArticleRepository articleRepository = new ArticleRepository();
 
-    public ArticleService() {
-
-    }
     public Article findById(int id) {
         return articleRepository.findById(id);
     }

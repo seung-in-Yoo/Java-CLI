@@ -44,7 +44,7 @@ public class ArticleController {
         System.out.println("번호 | 제목          | 등록일");
         System.out.println("----------------------------------");
         for (Article article : list) {
-            System.out.println(article.getTitle() + " | " + article.getContent() + " | " + article.getRegDate());
+            System.out.println(article.getId() + " | " + article.getTitle() + " | " + article.getRegDate());
         }
     }
 
