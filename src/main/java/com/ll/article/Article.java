@@ -1,12 +1,19 @@
 package com.ll.article;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 
+@Getter
+@Setter
 public class Article {
     // TODO: id, title, content, regDate 등 필드 정의
     private int id;
     private String title;
     private String content;
+    @Setter(AccessLevel.NONE)
     private final LocalDate regDate;
     private int count;
 
@@ -17,33 +24,7 @@ public class Article {
         regDate = LocalDate.now();
         count = 0;
     }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    public String getContent() {
-        return content;
-    }
-    public void setContent(String content) {
-        this.content = content;
-    }
-    public String getRegDate() {
-        return regDate.toString();
-    }
-    public int getCount() {
-        return count;
-    }
-    public void setCount(int count) {
-        this.count = count;
-    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
