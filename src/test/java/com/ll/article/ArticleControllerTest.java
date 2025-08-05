@@ -14,7 +14,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class ArticleControllerTest {
     @Test
-    @DisplayName("게시글 작성 - input")
+    @DisplayName("게시글 작성")
     void t1() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream defaultPrint = System.out;
