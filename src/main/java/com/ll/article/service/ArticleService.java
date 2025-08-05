@@ -3,6 +3,8 @@ package com.ll.article.service;
 import com.ll.article.entity.Article;
 import com.ll.article.repository.ArticleRepository;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ArticleService {
@@ -13,6 +15,9 @@ public class ArticleService {
     }
 
     public List<Article> listArticles() {
-        return repository.findAll();
+        List<Article> articles = repository.findAll();
+        List<Article> reversed = new ArrayList<>(articles);
+        Collections.reverse(reversed);
+        return reversed;
     }
 }

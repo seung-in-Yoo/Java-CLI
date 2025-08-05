@@ -16,8 +16,6 @@ public class ArticleRepository {
     }
 
     public List<Article> findAll() {
-        List<Article> reversed = new ArrayList<>(articles);
-        Collections.reverse(reversed);
-        return reversed;
+        return List.copyOf(articles); // copyOf 사용하여 원본 수정 불가능하도록 처리
     }
 }
