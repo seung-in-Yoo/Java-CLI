@@ -2,6 +2,7 @@ package com.ll.article.repository;
 
 import com.ll.article.entity.Article;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ArticleRepository {
@@ -12,5 +13,11 @@ public class ArticleRepository {
         Article article = Article.of(++lastId, title, content);
         articles.add(article);
         return article;
+    }
+
+    public List<Article> findAll() {
+        List<Article> reversed = new ArrayList<>(articles);
+        Collections.reverse(reversed);
+        return reversed;
     }
 }
