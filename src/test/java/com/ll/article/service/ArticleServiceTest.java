@@ -69,4 +69,19 @@ public class ArticleServiceTest {
         assertThat(updated.getTitle()).isEqualTo("제목수정1");
         assertThat(updated.getContent()).isEqualTo("내용수정1");
     }
+
+    @Test
+    @DisplayName("게시글 ID를 통해 게시글 삭제")
+    void t5() {
+        ArticleService service = new ArticleService();
+        Article article1 = service.writeArticle("제목1", "내용1");
+        Article article2 = service.writeArticle("제목2", "내용2");
+
+        service.deleteArticle(article1.getId());
+
+        List<Article> articles = service.listArticles();
+
+        assertThat(articles).hasSize(1);
+        assertThat(articles.get(0).getId()).isEqualTo(article2.getId());
+    }
 }
