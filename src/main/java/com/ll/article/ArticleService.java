@@ -17,4 +17,9 @@ public class ArticleService {
     public List<Article> getList() {
         return articleRepository.getList();
     }
+
+    public Article getDetail(int id) {
+        return articleRepository.getDetail(id);
+    }
+
 }

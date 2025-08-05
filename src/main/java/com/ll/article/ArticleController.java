@@ -1,5 +1,7 @@
 package com.ll.article;
 
+import com.ll.Rq;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,6 +31,22 @@ public class ArticleController {
         for (Article article : articles) {
             System.out.println(article.getId() + " | " + article.getTitle() + " | " + article.getRegDate());
         }
+    }
+
+    public void actionDetail(Rq rq) {
+        if (rq.getActionId() == -1) {
+            System.out.println("검색할 게시글의 id를 입력해주세요.");
+            return;
+        }
+        Article article = articleService.getDetail(rq.getActionId());
+        if (article == null) {
+            System.out.println(rq.getActionId() + "번 게시글은 없습니다.");
+            return;
+        }
+        System.out.println("번호 : " + article.getId());
+        System.out.println("제목 : " + article.getTitle());
+        System.out.println("내용 : " + article.getContent());
+        System.out.println("등록일 : " + article.getRegDate());
     }
 
     public void actionExit() {

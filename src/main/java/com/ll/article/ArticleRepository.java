@@ -18,4 +18,11 @@ public class ArticleRepository {
     public List<Article> getList() {
         return articles.reversed();
     }
+
+    public Article getDetail(int id) {
+        return articles.stream()
+                .filter(a -> a.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }

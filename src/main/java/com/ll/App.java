@@ -20,9 +20,10 @@ public class App {
             System.out.print("명령어 : ");
             String cmd = scanner.nextLine();
             Rq rq = new Rq(cmd);
-            switch (rq.getActioName()) {
+            switch (rq.getActionName()) {
                 case "write" -> articleController.actionWrite();
                 case "list" -> articleController.actionList();
+                case "detail" -> articleController.actionDetail(rq);
                 case "exit" -> {
                     articleController.actionExit();
                     return;
