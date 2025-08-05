@@ -1,8 +1,6 @@
 package com.ll.article.repository;
 
 import com.ll.article.entity.Article;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
