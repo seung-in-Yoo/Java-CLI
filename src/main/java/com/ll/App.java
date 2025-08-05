@@ -5,8 +5,7 @@ import com.ll.article.ArticleController;
 import java.util.Scanner;
 
 public class App {
-    public void run() {
-        Scanner sc = new Scanner(System.in);
+    public void run(Scanner sc) {
         ArticleController articleController = new ArticleController(sc);
         System.out.println("== 게시판 앱 만들기 ==");
 
@@ -25,8 +24,17 @@ public class App {
                     System.out.println("프로그램을 종료합니다.");
                     return ;
                 }
+                default -> {
+                    System.out.println("없는 명령어입니다.");
+                }
             }
-        }
 
+            System.out.println();
+        }
+    }
+
+    public void run() {
+        Scanner sc = new Scanner(System.in);
+        run(sc);
     }
 }

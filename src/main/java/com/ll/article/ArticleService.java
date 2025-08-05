@@ -59,15 +59,11 @@ public class ArticleService {
     void deleteArticle(int id) {
         Article foundArticle = articleRepository.findArticleFromList(id);
         if (foundArticle == null) {
-            System.out.printf("%d번 게시글은 존재하지 않습니다.\n", id);
+            System.out.printf("=> %d번 게시글은 존재하지 않습니다.\n", id);
             return ;
         }
 
         articleRepository.deleteArticleFromList(foundArticle);
         System.out.println("=> 게시글이 삭제되었습니다.");
     }
-
-
-
-
 }

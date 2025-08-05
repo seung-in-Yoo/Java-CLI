@@ -26,15 +26,30 @@ public class ArticleController {
 
     public void actionDetail(Rq rq) {
         int findId = rq.getId(0);
-
+        if (findId == 0) {
+            System.out.printf("=> %s 명령어는 아이디와 함께 입력해야합니다.\n", rq.getCmd());
+            return ;
+        }
         articleService.showDetails(findId);
     }
 
     public void actionModify(Rq rq) {
-        articleService.updateArticle(rq.getId(0));
+        int findId = rq.getId(0);
+        if (findId == 0) {
+            System.out.printf("=> %s 명령어는 아이디와 함께 입력해야합니다.\n", rq.getCmd());
+            return ;
+        }
+
+        articleService.updateArticle(findId);
     }
 
     public void actionDelete(Rq rq) {
-        articleService.deleteArticle(rq.getId(0));
+        int findId = rq.getId(0);
+        if (findId == 0) {
+            System.out.printf("=> %s 명령어는 아이디와 함께 입력해야합니다.\n", rq.getCmd());
+            return ;
+        }
+
+        articleService.deleteArticle(findId);
     }
 }
