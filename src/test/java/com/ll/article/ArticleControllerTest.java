@@ -82,4 +82,24 @@ public class ArticleControllerTest {
                 .contains("제목 : Java 게시판")
                 .contains("내용 : 콘솔 기반으로 구현");
     }
+
+    @Test
+    @DisplayName("delete")
+    public void t5() {
+        String rs = AppTestRunner.run("""
+                write
+                자바 공부
+                자바 텍스트 게시판 만들기
+                write
+                spring 공부
+                spring 게시판 만들기
+                delete 1
+                list
+                """);
+
+        assertThat(rs)
+                .contains("1번 게시글이 삭제되었습니다.")
+                .contains("2 | spring 공부 | 2025-08-06")
+                .doesNotContain("1 | 자바 공부 | 2025-08-06");
+    }
 }
