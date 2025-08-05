@@ -3,6 +3,9 @@ package com.ll.article.service;
 import com.ll.article.entity.Article;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class ArticleServiceTest {
@@ -11,12 +14,27 @@ public class ArticleServiceTest {
     void t1() {
         ArticleService service = new ArticleService();
 
-        Article article = service.write("제목1", "내용1");
+        Article article = service.writeArticle("제목1", "내용1");
 
         assertThat(article).isNotNull();
         assertThat(article.getId()).isEqualTo(1);
         assertThat(article.getTitle()).isEqualTo("제목1");
         assertThat(article.getContent()).isEqualTo("내용1");
         assertThat(article.getRegDate()).isNotNull();
+    }
+
+    @Test
+    @DisplayName("작성된 게시글들을 최신순으로 조회")
+    void t2() {
+        ArticleService service = new ArticleService();
+
+        service.writeArticle("제목1", "내용1");
+        service.writeArticle("제목2", "내용2");
+
+        List<Article> articles = service.listArticles();
+
+        assertThat(articles).hasSize(2);
+        assertThat(articles.get(0).getTitle()).isEqualTo("제목2");
+        assertThat(articles.get(1).getTitle()).isEqualTo("제목1");
     }
 }
