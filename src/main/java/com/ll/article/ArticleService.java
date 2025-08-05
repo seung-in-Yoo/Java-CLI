@@ -30,4 +30,8 @@ public class ArticleService {
     public void view(Article article) {
         article.setCount(article.getCount() + 1);
     }
+
+    public List<Article> search(String keyword) {
+        return articleRepository.findByTitleOrContent(keyword);
+    }
 }

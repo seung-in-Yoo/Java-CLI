@@ -20,28 +20,34 @@ public class Rq {
             articleController.list();
         }
         else if (command.startsWith("delete")) {
-            int id = parseId(command);
+            int id = Integer.parseInt(parseId(command));
             if (id > 0)
                 articleController.delete(id);
             else System.out.println("잘못된 명령어입니다.");
         }
         else if (command.startsWith("update")) {
-            int id = parseId(command);
+            int id = Integer.parseInt(parseId(command));
             if (id > 0)
                 articleController.update(id);
             else System.out.println("잘못된 명령어입니다.");
         }
         else if (command.startsWith("detail")) {
-            int id = parseId(command);
+            int id = Integer.parseInt(parseId(command));
             if (id > 0)
                 articleController.detail(id);
             else System.out.println("잘못된 명령어입니다.");
         }
+        else if (command.startsWith("search")) {
+            String id = parseId(command);
+            if (id != null)
+                articleController.search(id);
+            else System.out.println("잘못된 명령어입니다.");
+        }
     }
 
-    public int parseId(String command) {
+    public String parseId(String command) {
         String[] parsed = command.split(" ");
-        if (parsed.length != 2) return -1;
-        else return Integer.parseInt(parsed[1]);
+        if (parsed.length != 2) return null;
+        else return (parsed[1]);
     }
 }

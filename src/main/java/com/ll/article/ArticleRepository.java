@@ -37,4 +37,14 @@ public class ArticleRepository {
         }
         return false;
     }
+
+    public List<Article> findByTitleOrContent(String keyword) {
+        List<Article> searchArticles = new ArrayList<>();
+        for (Article article : articles) {
+            if (article.getTitle().contains(keyword) || article.getContent().contains(keyword)) {
+                searchArticles.add(article);
+            }
+        }
+        return searchArticles;
+    }
 }

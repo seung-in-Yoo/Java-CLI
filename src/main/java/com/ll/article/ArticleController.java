@@ -20,11 +20,7 @@ public class ArticleController {
 
     public void list() {
         List<Article> list = articleService.findAll();
-        System.out.println("번호 | 제목          | 등록일 | 조회수");
-        System.out.println("----------------------------------");
-        for (int i = list.size() - 1; i >= 0; i--) {
-            System.out.println(list.get(i).getId() + " | " + list.get(i).getTitle() + " | " + list.get(i).getRegDate() + " | " + list.get(i).getCount());
-        }
+        printList(list);
     }
 
     public void detail(int id) {
@@ -61,6 +57,23 @@ public class ArticleController {
             System.out.println("성공");
         } else {
             System.out.println("실패");
+        }
+    }
+
+    public void search (String keyword) {
+        List<Article> articles = articleService.search(keyword);
+        if (articles.isEmpty()) {
+            System.out.println("해당하는 게시물이 없습니다.");
+        } else {
+            printList(articles);
+        }
+    }
+
+    private void printList (List<Article> articles) {
+        System.out.println("번호 | 제목 | 등록일 | 조회수");
+        System.out.println("----------------------------------");
+        for (int i = articles.size() - 1; i >= 0; i--) {
+            System.out.println(articles.get(i).getId() + " | " + articles.get(i).getTitle() + " | " + articles.get(i).getRegDate() + " | " + articles.get(i).getCount());
         }
     }
 }
