@@ -37,4 +37,20 @@ public class ArticleServiceTest {
         assertThat(articles.get(0).getTitle()).isEqualTo("제목2");
         assertThat(articles.get(1).getTitle()).isEqualTo("제목1");
     }
+
+    @Test
+    @DisplayName("게시글 ID를 통해 게시글 조회")
+    void t3() {
+        ArticleService service = new ArticleService();
+
+        Article article1 = service.writeArticle("제목1", "내용1");
+        Article article2 = service.writeArticle("제목2", "내용2");
+
+        Article found = service.findArticleById(article1.getId());
+
+        assertThat(found).isNotNull();
+        assertThat(found.getId()).isEqualTo(article1.getId());
+        assertThat(found.getTitle()).isEqualTo("제목1");
+        assertThat(found.getContent()).isEqualTo("내용1");
+    }
 }
