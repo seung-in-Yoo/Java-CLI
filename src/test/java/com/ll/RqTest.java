@@ -27,7 +27,7 @@ public class RqTest {
     void t3() {
         Rq rq = new Rq("detail 1");
 
-        assertThat(rq.getId()).isEqualTo(1);
+        assertThat(rq.getId(0)).isEqualTo(1);
     }
 
     @Test
@@ -35,6 +35,6 @@ public class RqTest {
     void t4() {
         Rq rq = new Rq("detail");
 
-        assertThat(rq.getId()).isEqualTo(0);
+        assertThat(rq.getId(0)).isEqualTo(0);
     }
 }
