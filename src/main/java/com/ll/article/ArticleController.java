@@ -20,7 +20,16 @@ public class ArticleController {
 
     public void list() {
         List<Article> list = articleService.findAll();
-        printList(list);
+        printListDesc(list);
+    }
+
+    public void list(String sort) {
+        List<Article> list = articleService.findAll();
+        if (sort.equals("asc")) {
+            printListAsc(list);
+        } else if (sort.equals("desc")) {
+            printListDesc(list);
+        }
     }
 
     public void detail(int id) {
@@ -65,15 +74,22 @@ public class ArticleController {
         if (articles.isEmpty()) {
             System.out.println("해당하는 게시물이 없습니다.");
         } else {
-            printList(articles);
+            printListDesc(articles);
         }
     }
 
-    private void printList (List<Article> articles) {
+    private void printListDesc (List<Article> articles) {
         System.out.println("번호 | 제목 | 등록일 | 조회수");
         System.out.println("----------------------------------");
         for (int i = articles.size() - 1; i >= 0; i--) {
             System.out.println(articles.get(i).getId() + " | " + articles.get(i).getTitle() + " | " + articles.get(i).getRegDate() + " | " + articles.get(i).getCount());
+        }
+    }
+    private void printListAsc (List<Article> articles) {
+        System.out.println("번호 | 제목 | 등록일 | 조회수");
+        System.out.println("----------------------------------");
+        for (Article article : articles) {
+            System.out.println(article.getId() + " | " + article.getTitle() + " | " + article.getRegDate() + " | " + article.getCount());
         }
     }
 }

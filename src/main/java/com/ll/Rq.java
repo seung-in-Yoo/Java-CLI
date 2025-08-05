@@ -19,6 +19,12 @@ public class Rq {
         else if (command.equals("list")) {
             articleController.list();
         }
+        else if (command.startsWith("list")) {
+            String sort = parseId(command);
+            if (sort != null) {
+                articleController.list(sort);
+            } else articleController.list();
+        }
         else if (command.startsWith("delete")) {
             int id = Integer.parseInt(parseId(command));
             if (id > 0)
