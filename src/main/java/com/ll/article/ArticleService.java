@@ -1,5 +1,7 @@
 package com.ll.article;
 
+import java.util.List;
+
 public class ArticleService {
     ArticleRepository articleRepository;
 
@@ -10,5 +12,9 @@ public class ArticleService {
     public Article write(String title, String content) {
         Article article = new Article(title, content);
         return articleRepository.save(article);
+    }
+
+    public List<Article> getList() {
+        return articleRepository.getList();
     }
 }

@@ -21,6 +21,7 @@ public class App {
             String cmd = scanner.nextLine();
             switch (cmd) {
                 case "write" -> articleController.actionWrite();
+                case "list" -> articleController.actionList();
                 case "exit" -> {
                     articleController.actionExit();
                     return;

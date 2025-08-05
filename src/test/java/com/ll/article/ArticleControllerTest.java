@@ -33,10 +33,11 @@ public class ArticleControllerTest {
                 list
                 """);
 
-        assertThat(rs).contains("1번 게시글이 등록되었습니다.")
+        assertThat(rs)
+                .contains("1번 게시글이 등록되었습니다.")
                 .contains("2번 게시글이 등록되었습니다.")
-                .contains(" 번호 | 제목 | 등록일")
-                .contains(" 1 | 자바 공부 | 2025-08-06")
-                .contains(" 2 | spring 공부 | 2025-08-06");
+                .contains(" 번호 | 제목 | 등록일 ")
+                .contains("1 | 자바 공부 | 2025-08-06")
+                .contains("2 | spring 공부 | 2025-08-06");
     }
 }
