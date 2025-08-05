@@ -20,10 +20,10 @@ public class ArticleController {
 
     public void list() {
         List<Article> list = articleService.findAll();
-        System.out.println("번호 | 제목          | 등록일");
+        System.out.println("번호 | 제목          | 등록일 | 조회수");
         System.out.println("----------------------------------");
         for (int i = list.size() - 1; i >= 0; i--) {
-            System.out.println(list.get(i).getId() + " | " + list.get(i).getTitle() + " | " + list.get(i).getRegDate());
+            System.out.println(list.get(i).getId() + " | " + list.get(i).getTitle() + " | " + list.get(i).getRegDate() + " | " + list.get(i).getCount());
         }
     }
 
@@ -33,10 +33,12 @@ public class ArticleController {
             System.out.println(id + "번 글이 없습니다.");
             return;
         }
+        articleService.view(article); // 조회
         System.out.println("번호: " + article.getId());
         System.out.println("제목: " + article.getTitle());
         System.out.println("내용: " + article.getContent());
         System.out.println("등록일: " + article.getRegDate());
+        System.out.println("조회수: " + article.getCount());
     }
 
     public void update (int id) {

@@ -26,4 +26,8 @@ public class ArticleService {
         article.setTitle(title);
         article.setContent(content);
     }
+
+    public void view(Article article) {
+        article.setCount(article.getCount() + 1);
+    }
 }

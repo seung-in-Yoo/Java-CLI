@@ -8,12 +8,14 @@ public class Article {
     private String title;
     private String content;
     private final LocalDate regDate;
+    private int count;
 
     public Article(int id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
         regDate = LocalDate.now();
+        count = 0;
     }
     public int getId() {
         return id;
@@ -35,6 +37,12 @@ public class Article {
     }
     public String getRegDate() {
         return regDate.toString();
+    }
+    public int getCount() {
+        return count;
+    }
+    public void setCount(int count) {
+        this.count = count;
     }
     @Override
     public boolean equals(Object o) {
