@@ -9,26 +9,28 @@ public class ArticleRepository {
 
     ArticleRepository() {
         articles = new ArrayList<Article>();
-        lastId = 1;
+        lastId = 0;
     }
 
-    Article addArticleToList(String title, String content) {
-        return null;
+    void addArticleToList(String title, String content) {
+        Article newArticle = new Article(++lastId, title, content);
+        articles.add(newArticle);
     }
 
     Article findArticleFromList(int id) {
+        for (Article article : articles) {
+            if (article.getId() == id) return article;
+        }
+
         return null;
     }
 
-    Article updateArticleInList(Article article) {
-        return null;
+    void deleteArticleFromList(Article article) {
+        articles.remove(article);
     }
 
-    void deleteArticleFromList(int id) {
-    }
-
-    void showArticleList() {
-
+    List<Article> getArticleList() {
+        return articles;
     }
 
 }

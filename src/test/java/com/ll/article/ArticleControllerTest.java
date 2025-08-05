@@ -56,7 +56,7 @@ public class ArticleControllerTest {
         assertThat(out.toString())
                 .contains("번호 | 제목       | 등록일")
                 .contains("1    | 자바 공부  | %s".formatted(now))
-                .contains("2    | 자바 공부  | %s".formatted(now));
+                .contains("2    | C++ 공부  | %s".formatted(now));
     }
 
     @Test
@@ -109,7 +109,7 @@ public class ArticleControllerTest {
         articleController.actionWrite();
         articleController.actionWrite();
         articleController.actionModify(rq1);
-        articleController.actionList();
+        articleController.actionDetail(rq1);
 
         assertThat(out.toString())
                 .contains("자바 공부 수정")
@@ -141,7 +141,7 @@ public class ArticleControllerTest {
         String now = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now());
 
         assertThat(out.toString())
-                .contains("2    | 자바 공부  | %s".formatted(now))
+                .contains("2    | C++ 공부  | %s".formatted(now))
                 .doesNotContain("1    | 자바 공부  | %s".formatted(now));
     }
 }
