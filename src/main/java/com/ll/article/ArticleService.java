@@ -27,4 +27,8 @@ public class ArticleService {
         article.setContent(updateContent);
         articleRepository.save(article);
     }
+
+    public void delete(Article article) {
+        articleRepository.delete(article);
+    }
 }

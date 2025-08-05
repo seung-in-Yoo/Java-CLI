@@ -67,6 +67,20 @@ public class ArticleController {
         System.out.println(article.getId() + "번 게시글이 수정되었습니다.");
     }
 
+    public void actionDelete(Rq rq) {
+        if (rq.getActionId() == -1) {
+            System.out.println("삭제할 게시글의 id를 입력해주세요.");
+            return;
+        }
+        Article article = articleService.getArticle(rq.getActionId());
+        if (article == null) {
+            System.out.println(rq.getActionId() + "번 게시글은 없습니다.");
+            return;
+        }
+        articleService.delete(article);
+        System.out.println(article.getId() + "번 게시글이 삭제되었습니다.");
+    }
+
     public void actionExit() {
         System.out.println("프로그램을 종료합니다.");
     }

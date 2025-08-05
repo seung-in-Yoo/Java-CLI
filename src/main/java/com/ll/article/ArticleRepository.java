@@ -27,4 +27,8 @@ public class ArticleRepository {
                 .findFirst()
                 .orElse(null);
     }
+
+    public void delete(Article article) {
+        articles.remove(article);
+    }
 }
