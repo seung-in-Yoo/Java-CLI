@@ -43,13 +43,17 @@ public class ArticleController {
         List<Article> list = articleService.findAll();
         System.out.println("번호 | 제목          | 등록일");
         System.out.println("----------------------------------");
-        for (Article article : list) {
-            System.out.println(article.getId() + " | " + article.getTitle() + " | " + article.getRegDate());
+        for (int i = list.size() - 1; i >= 0; i--) {
+            System.out.println(list.get(i).getId() + " | " + list.get(i).getTitle() + " | " + list.get(i).getRegDate());
         }
     }
 
     public void detail(int id) {
         Article article = articleService.findById(id);
+        if (article == null) {
+            System.out.println(id + "번 글이 없습니다.");
+            return;
+        }
         System.out.println("번호: " + article.getId());
         System.out.println("제목: " + article.getTitle());
         System.out.println("내용: " + article.getContent());
@@ -58,8 +62,9 @@ public class ArticleController {
 
     public void update (int id) {
         Article article = articleService.findById(id);
-        if (article != null) {
+        if (article == null) {
             System.out.printf("%d번 글이 없습니다.\n", id);
+            return;
         }
         System.out.printf("제목 (현재: %s): ", article.getTitle());
         String newTitle = scanner.nextLine();
