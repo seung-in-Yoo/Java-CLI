@@ -53,4 +53,20 @@ public class ArticleServiceTest {
         assertThat(found.getTitle()).isEqualTo("제목1");
         assertThat(found.getContent()).isEqualTo("내용1");
     }
+
+    @Test
+    @DisplayName("게시글 ID를 통해 기존 게시글 수정")
+    void t4() {
+        ArticleService service = new ArticleService();
+
+        Article article1 = service.writeArticle("제목1", "내용1");
+
+        service.updateArticle(article1.getId(), "제목수정1", "내용수정1");
+
+        Article updated = service.findArticleById(article1.getId());
+
+        assertThat(updated).isNotNull();
+        assertThat(updated.getTitle()).isEqualTo("제목수정1");
+        assertThat(updated.getContent()).isEqualTo("내용수정1");
+    }
 }
