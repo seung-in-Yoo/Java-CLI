@@ -40,4 +40,25 @@ public class ArticleControllerTest {
                 .contains("1 | 자바 공부 | 2025-08-06")
                 .contains("2 | spring 공부 | 2025-08-06");
     }
+
+    @Test
+    @DisplayName("detail")
+    public void t3() {
+        String rs = AppTestRunner.run("""
+                write
+                자바 공부
+                자바 텍스트 게시판 만들기
+                write
+                spring 공부
+                spring 게시판 만들기
+                list
+                detail 1
+                """);
+
+        assertThat(rs)
+                .contains("번호 : 1")
+                .contains("제목 : 자바 공부")
+                .contains("내용 : 자바 텍스트 게시판 만들기")
+                .contains("등록일 : 2025-08-06");
+    }
 }
