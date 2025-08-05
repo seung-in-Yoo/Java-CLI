@@ -21,7 +21,7 @@ public class App {
             switch (cmd) {
                 case "write" -> articleController.actionWrite();
                 case "exit" -> {
-//                    articleController.actionExit();
+                    articleController.actionExit();
                     return;
                 }
             }
