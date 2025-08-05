@@ -11,10 +11,16 @@ public class App {
             System.out.print("명령어: ");
             String command = sc.nextLine().trim();
 
-            if (command.equals("exit")) {
-                System.out.println("프로그램을 종료합니다.");
-                break;
-            }
+            if (handleCommand(command)) { break; }
         }
+    }
+
+    public boolean handleCommand(String command) {
+        if (command.equals("exit")) {
+            System.out.println("프로그램을 종료합니다.");
+            return true;
+        }
+
+        return false;
     }
 }
