@@ -11,7 +11,7 @@ public class ArticleRepository {
     private int lastId = 0;
 
     public Article save(String title, String content) {
-        Article article = Article.of(++lastId, title, content, LocalDate.now());
+        Article article = Article.of(++lastId, title, content);
         articles.add(article);
         return article;
     }
