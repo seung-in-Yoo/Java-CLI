@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
+// 해당 테스트 코드에서 assertThat 부분은 포함여부를 확인하는 .contains보다 단일 객체의 필드 검증인 .isEqualTo가 더 적절
 public class ArticleServiceTest {
     @Test
     @DisplayName("게시글을 작성하면 Article 객체가 생성")
