@@ -19,7 +19,8 @@ public class App {
         while(true) {
             System.out.print("명령어 : ");
             String cmd = scanner.nextLine();
-            switch (cmd) {
+            Rq rq = new Rq(cmd);
+            switch (rq.getActioName()) {
                 case "write" -> articleController.actionWrite();
                 case "list" -> articleController.actionList();
                 case "exit" -> {
