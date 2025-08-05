@@ -1,7 +1,6 @@
-package com.ll.article;
+package com.ll.article.service;
 
 import com.ll.article.entity.Article;
-import com.ll.article.service.ArticleService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;

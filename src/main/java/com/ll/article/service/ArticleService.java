@@ -1,5 +1,12 @@
 package com.ll.article.service;
 
+import com.ll.article.entity.Article;
+import com.ll.article.repository.ArticleRepository;
+
 public class ArticleService {
-    // TODO: 비즈니스 로직 구현
+    private final ArticleRepository repository = new ArticleRepository();
+
+    public Article write(String title, String content) {
+        return repository.save(title, content);
+    }
 }

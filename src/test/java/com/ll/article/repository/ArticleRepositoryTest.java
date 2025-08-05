@@ -1,4 +1,4 @@
-package com.ll.article;
+package com.ll.article.repository;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

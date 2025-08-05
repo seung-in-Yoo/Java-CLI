@@ -27,7 +27,7 @@ public class Article {
         this.regDate = regDate;
     }
 
-    public static Article of(int id, String title, String content) {
-        return new Article(id, title, content, LocalDate.now());
+    public static Article of(int id, String title, String content, LocalDate regDate) {
+        return new Article(id, title, content, regDate);
     }
 }
