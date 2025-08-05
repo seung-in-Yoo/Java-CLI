@@ -36,4 +36,13 @@ public class Article {
     public String getRegDate() {
         return regDate.toString();
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Article)) return false;
+        Article article = (Article) o;
+        return id == article.id &&
+                title.equals(article.title) &&
+                content.equals(article.content);
+    }
 }

@@ -1,13 +1,11 @@
 package com.ll;
 
-import com.ll.article.ArticleController;
-
 import java.util.Scanner;
 
 public class App {
     public void run() {
         Scanner sc = new Scanner(System.in);
-        ArticleController articleController = new ArticleController(sc);
+        Rq rq = new Rq(sc);
 
         System.out.println("== 게시판 앱 만들기 ==");
 
@@ -18,7 +16,7 @@ public class App {
                 System.out.println("프로그램을 종료합니다.");
                 break;
             }
-            articleController.run(command);
+            rq.run(command);
         }
     }
 }

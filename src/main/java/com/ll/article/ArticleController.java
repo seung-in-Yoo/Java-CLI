@@ -9,27 +9,6 @@ public class ArticleController {
     public ArticleController(Scanner scanner) { this.scanner = scanner; }
     ArticleService articleService = new ArticleService();
 
-    public void run(String command) {
-        if (command.equals("write")) {
-            write();
-        }
-        else if (command.equals("list")) {
-            list();
-        }
-        else if (command.startsWith("delete")) {
-            int id = Integer.parseInt(command.split(" ")[1]);
-            delete(id);
-        }
-        else if (command.startsWith("update")) {
-            int id = Integer.parseInt(command.split(" ")[1]);
-            update(id);
-        }
-        else if (command.startsWith("detail")) {
-            int id = Integer.parseInt(command.split(" ")[1]);
-            detail(id);
-        }
-    }
-
     public void write() {
         System.out.print("제목: ");
         String title = scanner.nextLine();
