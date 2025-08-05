@@ -2,7 +2,6 @@ package com.ll.article.repository;
 
 import com.ll.article.entity.Article;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ArticleRepository {
