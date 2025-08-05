@@ -61,4 +61,25 @@ public class ArticleControllerTest {
                 .contains("내용 : 자바 텍스트 게시판 만들기")
                 .contains("등록일 : 2025-08-06");
     }
+
+    @Test
+    @DisplayName("update")
+    public void t4() {
+        String rs = AppTestRunner.run("""
+                write
+                자바 공부
+                자바 텍스트 게시판 만들기
+                detail 1
+                update 1
+                Java 게시판
+                콘솔 기반으로 구현
+                detail 1
+                """);
+
+        assertThat(rs)
+                .contains("제목 : 자바 공부")
+                .contains("내용 : 자바 텍스트 게시판 만들기")
+                .contains("제목 : Java 게시판")
+                .contains("내용 : 콘솔 기반으로 구현");
+    }
 }
