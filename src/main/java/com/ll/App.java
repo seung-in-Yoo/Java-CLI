@@ -8,7 +8,7 @@ public class App {
         Rq rq = new Rq(sc);
 
         System.out.println("== 게시판 앱 만들기 ==");
-
+        rq.run_notLogin(sc);
         while (true) {
             System.out.print("명령어: ");
             String command = sc.nextLine();
