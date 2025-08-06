@@ -21,10 +21,19 @@ public class App {
         articles.add(article);
 
     }
-    public void list() {
+    public String getListText() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("번호 / 제목 / 작성일\n")
+                .append("-------------------\n");
         for (int i = articles.size() - 1; i >= 0; i--) {
             Article a = articles.get(i);
-            System.out.printf("%d / %s / %s\n", a.getId(), a.getTitle(), a.getRegDate());
+            sb.append(String.format("%d / %s / %s\n",
+                    a.getId(), a.getTitle(), a.getRegDate()));
         }
+        return sb.toString();
+    }
+
+    public void list() {
+        System.out.print(getListText());
     }
 }
