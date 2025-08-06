@@ -32,6 +32,7 @@ public class App {
             case "detail" -> controller.detail(rq);
             case "update" -> controller.update(rq);
             case "delete" -> controller.delete(rq);
+            case "search" -> controller.search(rq);
             default -> System.out.println("정확한 명령어를 입력해주세요.");
         }
         return false;

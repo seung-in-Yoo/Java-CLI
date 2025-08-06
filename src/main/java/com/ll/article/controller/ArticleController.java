@@ -104,4 +104,21 @@ public class ArticleController {
             System.out.println(e.getMessage());
         }
     }
+
+    // 키워드 검색
+    public void search(Rq rq) {
+        String keyword = rq.getKeyword();
+
+        List<Article> found = service.searchArticles(keyword);
+
+        System.out.println("번호 | 제목       | 등록일");
+        System.out.println("-----------------------------");
+        for (Article article : found) {
+            System.out.printf("%d    | %s | %s\n", article.getId(), article.getTitle(), article.getRegDate());
+        }
+
+        if (found.isEmpty()) {
+            System.out.println("검색 결과가 없습니다.");
+        }
+    }
 }

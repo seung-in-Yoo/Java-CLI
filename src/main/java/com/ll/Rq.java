@@ -3,8 +3,10 @@ package com.ll;
 public class Rq {
     private final String actionName;
     private final int paramId;
+    private final String fullCommand;
 
     public Rq(String command) {
+        this.fullCommand = command;
         String[] split = command.split(" ");
 
         this.actionName = split[0];
@@ -28,5 +30,10 @@ public class Rq {
 
     public int getParamId() {
         return paramId;
+    }
+
+    public String getKeyword() {
+        String[] split = fullCommand.split(" ", 2);
+        return (split.length > 1) ? split[1].trim() : ""; // search 뒤에 단어가 있으면 단어 반환하고 없으면 공백 반환
     }
 }
