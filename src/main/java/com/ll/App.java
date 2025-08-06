@@ -41,7 +41,7 @@ public class App {
                 }
             } else if (cmd.startsWith("update")) {
                 if (arg.isEmpty()) {
-                    System.out.println("사용법: update [id]");
+                    System.out.println("사용법: update id");
                 } else {
                     try {
                         int id = Integer.parseInt(arg);
@@ -50,11 +50,17 @@ public class App {
                         System.out.println("ID는 숫자로 입력해주세요.");
                     }
                 }
-
-
-
             } else if (cmd.startsWith("delete")) {
-
+                if (arg.isEmpty()) {
+                    System.out.println("사용법: delete id");
+                } else {
+                    try {
+                        int id = Integer.parseInt(arg);
+                        delete(id);
+                    } catch (NumberFormatException e) {
+                        System.out.println("ID는 숫자로 입력해주세요.");
+                    }
+                }
             } else {
                 System.out.println("알 수 없는 명령어입니다.");
             }
@@ -123,5 +129,13 @@ public class App {
             }
         }
         System.out.println(id + "번 게시글은 존재하지 않습니다.");
+    }
+    private void delete(int id) {
+        boolean removed = articles.removeIf(a -> a.getId() == id);
+        if (removed) {
+            System.out.println("게시글이 삭제되었습니다.");
+        } else {
+            System.out.println(id + "번 게시글은 존재하지 않습니다.");
+        }
     }
 }
