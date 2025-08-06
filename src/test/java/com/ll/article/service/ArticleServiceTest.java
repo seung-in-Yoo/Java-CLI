@@ -85,4 +85,18 @@ public class ArticleServiceTest {
         assertThat(articles).hasSize(1);
         assertThat(articles.get(0).getId()).isEqualTo(article2.getId());
     }
+
+    @Test
+    @DisplayName("게시글을 조회하면 조회수가 1 증가")
+    void t6() {
+        ArticleService service = new ArticleService();
+
+        Article article = service.writeArticle("제목1", "내용1");
+
+        assertThat(article.getViewCount()).isEqualTo(0);
+        service.increaseViewCount(article.getId());
+        assertThat(article.getViewCount()).isEqualTo(1);
+        service.increaseViewCount(article.getId());
+        assertThat(article.getViewCount()).isEqualTo(2);
+    }
 }
