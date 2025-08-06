@@ -1,6 +1,7 @@
 package com.ll.article.service;
 
 import com.ll.article.entity.Article;
+import com.ll.article.entity.ArticleSortOption;
 import com.ll.article.repository.ArticleRepository;
 
 import java.io.IOException;
@@ -16,18 +17,17 @@ public class ArticleService {
         return repository.save(title, content);
     }
 
-    public List<Article> listArticles(String order) {
+    public List<Article> listArticles(ArticleSortOption option) {
         List<Article> articles = repository.findAll();
-
         List<Article> sorted = new ArrayList<>(articles);
 
-        // 기본값은 최신순으로 하고, 정렬하려고 하는 입력값이 들어오면 switch문을 통해서 명령 처리
-        switch ((order == null ? "number-desc" : order).toLowerCase()) {
-            case "number-asc" -> sorted.sort(Comparator.comparingInt(Article::getId));
-            case "number-desc" -> sorted.sort(Comparator.comparingInt(Article::getId).reversed());
-            case "date-asc" -> sorted.sort(Comparator.comparing(Article::getRegDate));
-            case "date-desc" -> sorted.sort(Comparator.comparing(Article::getRegDate).reversed());
-            default -> sorted.sort(Comparator.comparingInt(Article::getId).reversed());
+        if (option == null) option = ArticleSortOption.NUMBER_DESC; // 기본값: 최신순
+
+        switch (option) {
+            case NUMBER_ASC -> sorted.sort(Comparator.comparingInt(Article::getId));
+            case NUMBER_DESC -> sorted.sort(Comparator.comparingInt(Article::getId).reversed());
+            case DATE_ASC -> sorted.sort(Comparator.comparing(Article::getRegDate));
+            case DATE_DESC -> sorted.sort(Comparator.comparing(Article::getRegDate).reversed());
         }
         return sorted;
     }

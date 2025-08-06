@@ -2,6 +2,7 @@ package com.ll.article.controller;
 
 import com.ll.Rq;
 import com.ll.article.entity.Article;
+import com.ll.article.entity.ArticleSortOption;
 import com.ll.article.service.ArticleService;
 
 import java.io.IOException;
@@ -34,7 +35,8 @@ public class ArticleController {
     // 게시글 목록 출력
     public void list(Rq rq) {
         String order = rq.getKeyword();
-        List<Article> articles = service.listArticles(order);
+        ArticleSortOption sortOption = parseSortOption(order);
+        List<Article> articles = service.listArticles(sortOption);
 
         System.out.println("번호 | 제목       | 등록일");
         System.out.println("-----------------------------");
@@ -142,6 +144,18 @@ public class ArticleController {
         } catch (IOException e) {
             System.out.println("불러오기 중 오류가 발생했습니다: " + e.getMessage());
         }
+    }
+
+    // 사용자가 입력한 정렬 옵션에 따라서 enum으로 변환
+    private ArticleSortOption parseSortOption(String option) {
+        if (option == null) return ArticleSortOption.NUMBER_DESC;
+        return switch (option.toLowerCase()) {
+            case "number-asc", "asc" -> ArticleSortOption.NUMBER_ASC;
+            case "number-desc", "desc" -> ArticleSortOption.NUMBER_DESC;
+            case "date-asc" -> ArticleSortOption.DATE_ASC;
+            case "date-desc" -> ArticleSortOption.DATE_DESC;
+            default -> ArticleSortOption.NUMBER_DESC;
+        };
     }
 
 }

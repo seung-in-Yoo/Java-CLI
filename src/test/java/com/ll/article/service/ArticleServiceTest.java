@@ -1,6 +1,7 @@
 package com.ll.article.service;
 
 import com.ll.article.entity.Article;
+import com.ll.article.entity.ArticleSortOption;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,7 @@ public class ArticleServiceTest {
         service.writeArticle("제목1", "내용1");
         service.writeArticle("제목2", "내용2");
 
-        List<Article> articles = service.listArticles("number-desc"); // 기본값: 최신순
+        List<Article> articles = service.listArticles(ArticleSortOption.NUMBER_DESC);  // 기본값: 최신순
 
         assertThat(articles).hasSize(2);
         assertThat(articles.get(0).getTitle()).isEqualTo("제목2");
@@ -80,7 +81,7 @@ public class ArticleServiceTest {
 
         service.deleteArticle(article1.getId());
 
-        List<Article> articles = service.listArticles("number-desc"); // 기본값: 최신순
+        List<Article> articles = service.listArticles(ArticleSortOption.NUMBER_DESC); // 기본값: 최신순
 
         assertThat(articles).hasSize(1);
         assertThat(articles.get(0).getId()).isEqualTo(article2.getId());
@@ -121,7 +122,6 @@ public class ArticleServiceTest {
     @Test
     @DisplayName("게시글 정렬 기능 (번호 및 날짜에 따라서 오름차순,내림차순 정렬 가능)")
     void t8() {
-        // 여기도 역시 정확한 값에 따라 일치해야 하기 때문에 isEqualTo 사용
         ArticleService service = new ArticleService();
 
         service.writeArticle("A", "a");
@@ -129,23 +129,28 @@ public class ArticleServiceTest {
         service.writeArticle("C", "c");
 
         // 번호 내림차순
-        List<Article> desc = service.listArticles("number-desc");
+        List<Article> desc = service.listArticles(ArticleSortOption.NUMBER_DESC);
         assertThat(desc.get(0).getId()).isEqualTo(3);
         assertThat(desc.get(1).getId()).isEqualTo(2);
         assertThat(desc.get(2).getId()).isEqualTo(1);
 
         // 번호 오름차순
-        List<Article> asc = service.listArticles("number-asc");
+        List<Article> asc = service.listArticles(ArticleSortOption.NUMBER_ASC);
         assertThat(asc.get(0).getId()).isEqualTo(1);
         assertThat(asc.get(1).getId()).isEqualTo(2);
         assertThat(asc.get(2).getId()).isEqualTo(3);
 
         // 날짜 내림차순
-        List<Article> dateDesc = service.listArticles("date-desc");
+        List<Article> dateDesc = service.listArticles(ArticleSortOption.DATE_DESC);
         assertThat(dateDesc.get(0).getId()).isEqualTo(3);
+        assertThat(dateDesc.get(1).getId()).isEqualTo(2);
+        assertThat(dateDesc.get(2).getId()).isEqualTo(1);
 
         // 날짜 오름차순
-        List<Article> dateAsc = service.listArticles("date-asc");
+        List<Article> dateAsc = service.listArticles(ArticleSortOption.DATE_ASC);
         assertThat(dateAsc.get(0).getId()).isEqualTo(1);
+        assertThat(dateDesc.get(1).getId()).isEqualTo(2);
+        assertThat(dateDesc.get(2).getId()).isEqualTo(3);
     }
+
 }
