@@ -38,4 +38,11 @@ public class ArticleService {
     public void increaseViewCount(Article article) {
         article.increaseViewCount();
     }
+
+    public List<Article> searchArticles(String keyword) {
+        List<Article> found = repository.findByKeyword(keyword);
+        List<Article> reversed = new ArrayList<>(found);
+        Collections.reverse(reversed);
+        return reversed;
+    }
 }

@@ -3,6 +3,7 @@ package com.ll.article.repository;
 import com.ll.article.entity.Article;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ArticleRepository {
     private final List<Article> articles = new ArrayList<>();
@@ -27,5 +28,11 @@ public class ArticleRepository {
 
     public void delete(Article article) {
         articles.remove(article);
+    }
+
+    public List<Article> findByKeyword(String keyword) {
+        return articles.stream()
+                .filter(article -> article.getTitle().contains(keyword) || article.getContent().contains(keyword))
+                .collect(Collectors.toList());
     }
 }
