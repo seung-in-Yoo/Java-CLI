@@ -22,6 +22,7 @@ public class App {
                 case "delete" -> articleController.actionDelete(rq);
                 case "update" -> articleController.actionModify(rq);
                 case "setting" -> appSettingsController.actionSetting(rq);
+                case "search" -> articleController.actionSearch(rq);
                 case "exit" -> {
                     sc.close();
                     System.out.println("프로그램을 종료합니다.");

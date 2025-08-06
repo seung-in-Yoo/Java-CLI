@@ -1,8 +1,8 @@
 package com.ll.setting;
 
 public class SettingsContext {
-    static String orderName = "id";
-    static Boolean isAsc = true;
+    public static String orderName = "id";
+    public static Boolean isAsc = true;
 
-    static int pageSize = 50;
+    public static int pageSize = 50;
 }
