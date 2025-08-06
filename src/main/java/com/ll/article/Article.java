@@ -1,5 +1,22 @@
 package com.ll.article;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Article {
-    // TODO: id, title, content, regDate 등 필드 정의
+    private int id;
+    private String title;
+    private String content;
+    private String regDate;
+
+    public Article(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+    public boolean isNew() {
+        return this.getId() == 0;
+    }
 }
