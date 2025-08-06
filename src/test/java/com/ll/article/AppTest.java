@@ -1,6 +1,9 @@
+package com.ll.article;
+
 import com.ll.App;
-import com.ll.article.Article;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class AppTest {
@@ -11,8 +14,8 @@ public class AppTest {
 
         app.write("제목1", "내용1", "2025-08-06");
 
-        assertEquals(1, app.articles.size());   // 1개 등록됐는지
-        Article article = app.articles.get(0);
+        assertEquals(1, app.getArticles().size());   // 1개 등록됐는지
+        Article article = app.getArticles().get(0);
 
         assertEquals("제목1", article.title);
         assertEquals("내용1", article.content);
