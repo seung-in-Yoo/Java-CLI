@@ -1,5 +1,6 @@
 package com.ll.article;
 
+import com.ll.AppContext;
 import com.ll.Rq;
 
 import java.util.List;
@@ -10,9 +11,9 @@ public class ArticleController {
     ArticleService articleService;
     Scanner scanner;
 
-    public ArticleController(Scanner scanner) {
-        articleService = new ArticleService();
-        this.scanner = scanner;
+    public ArticleController() {
+        articleService = AppContext.articleService;
+        this.scanner = AppContext.scanner;
     }
 
     public void actionWrite() {

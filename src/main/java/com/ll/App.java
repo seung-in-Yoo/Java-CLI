@@ -9,11 +9,11 @@ import java.util.Scanner;
 public class App {
     Scanner scanner;
 
-    public App(Scanner scanner) {
-        this.scanner = scanner;
+    public App() {
+        this.scanner = AppContext.scanner;
     }
     public void run() {
-        ArticleController articleController = new ArticleController(scanner);
+        ArticleController articleController = AppContext.articleController;
 
         System.out.println("== 게시판 앱 만들기 ==");
         while(true) {

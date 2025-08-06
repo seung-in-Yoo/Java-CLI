@@ -10,7 +10,8 @@ public class AppTestRunner {
         Scanner scanner = new Scanner(input + "\nexit");
 
         ByteArrayOutputStream output = setOutToByteArray();
-        new App(scanner).run();
+        AppContext.renew(scanner);
+        new App().run();
 
         return output.toString();
     }

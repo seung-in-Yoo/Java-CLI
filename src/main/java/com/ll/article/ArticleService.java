@@ -1,12 +1,14 @@
 package com.ll.article;
 
+import com.ll.AppContext;
+
 import java.util.List;
 
 public class ArticleService {
     ArticleRepository articleRepository;
 
     public ArticleService() {
-        articleRepository = new ArticleRepository();
+        articleRepository = AppContext.articleRepository;
     }
 
     public Article write(String title, String content) {
