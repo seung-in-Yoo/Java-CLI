@@ -52,10 +52,13 @@ public class ArticleController {
                 throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다. ID=" + id);
             }
 
+            service.increaseViewCount(article);
+
             System.out.println("번호: " + article.getId());
             System.out.println("제목: " + article.getTitle());
             System.out.println("내용: " + article.getContent());
             System.out.println("등록일: " + article.getRegDate());
+            System.out.println("조회수: " + article.getViewCount());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

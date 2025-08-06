@@ -94,9 +94,9 @@ public class ArticleServiceTest {
         Article article = service.writeArticle("제목1", "내용1");
 
         assertThat(article.getViewCount()).isEqualTo(0);
-        service.increaseViewCount(article.getId());
+        service.increaseViewCount(article);
         assertThat(article.getViewCount()).isEqualTo(1);
-        service.increaseViewCount(article.getId());
+        service.increaseViewCount(article);
         assertThat(article.getViewCount()).isEqualTo(2);
     }
 }

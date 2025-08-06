@@ -35,13 +35,7 @@ public class ArticleService {
         repository.delete(article);
     }
 
-    public void increaseViewCount(int id) {
-        Article article = repository.findById(id);
-
-        if (article == null) {
-            throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다. ID=" + id);
-        }
-
+    public void increaseViewCount(Article article) {
         article.increaseViewCount();
     }
 }
