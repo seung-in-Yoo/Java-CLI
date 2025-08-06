@@ -54,9 +54,45 @@ public class ArticleControllerTest {
         String now = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now());
 
         assertThat(out.toString())
-                .contains("번호 | 제목       | 등록일")
-                .contains("1    | 자바 공부  | %s".formatted(now))
-                .contains("2    | C++ 공부  | %s".formatted(now));
+                .contains("번호 | 제목(조회수)       | 등록일")
+                .contains("2    | C++ 공부 (0)  | %s".formatted(now))
+                .contains("1    | 자바 공부 (0)  | %s".formatted(now));
+
+    }
+
+    @Test
+    @DisplayName("게시글 목록 보기 - 조회수 증가")
+    void t2_1() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream defaultPrint = System.out;
+        System.setOut(new PrintStream(out));
+
+        String input = """
+                자바 공부
+                자바 텍스트 게시판 만들기
+                C++ 공부
+                C++ 학습은 정말 유용하다.
+                """;
+
+        ArticleController articleController = new ArticleController(new Scanner(input));
+        articleController.actionWrite();
+        articleController.actionWrite();
+
+        Rq rq1 = new Rq("detail 1");
+        Rq rq2 = new Rq("detail 2");
+
+        articleController.actionDetail(rq1);
+        articleController.actionDetail(rq1);
+        articleController.actionDetail(rq2);
+        articleController.actionList();
+
+        String now = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now());
+
+        assertThat(out.toString())
+                .contains("번호 | 제목(조회수)       | 등록일")
+                .contains("2    | C++ 공부 (1)  | %s".formatted(now))
+                .contains("1    | 자바 공부 (2)  | %s".formatted(now));
+
     }
 
     @Test

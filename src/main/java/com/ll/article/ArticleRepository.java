@@ -30,7 +30,10 @@ public class ArticleRepository {
     }
 
     List<Article> getArticleList() {
-        return articles;
+        return articles.reversed();
     }
 
+    public void addViewCount(Article foundArticle) {
+        foundArticle.addViewCount();
+    }
 }

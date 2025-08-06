@@ -9,12 +9,14 @@ public class Article {
     private String title;
     private String content;
     private final String regDate;
+    private int viewCount;
 
     Article(int id, String title, String content) {
         this.title = title;
         this.content = content;
         this.id = id;
         this.regDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.viewCount = 0;
     }
 
     public void setTitle(String title) {
@@ -31,6 +33,14 @@ public class Article {
 
     public String getContent() {
         return content;
+    }
+
+    public void addViewCount() {
+        this.viewCount++;
+    }
+
+    public int getViewCount() {
+        return viewCount;
     }
 
     public int getId() {

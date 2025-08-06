@@ -20,10 +20,10 @@ public class ArticleService {
 
     void listArticle() {
        List<Article> articleList = articleRepository.getArticleList();
-       System.out.println("번호 | 제목       | 등록일");
+       System.out.println("번호 | 제목(조회수)       | 등록일");
        System.out.println("-----------------------------");
        for (Article article : articleList) {
-            System.out.printf("%-5d| %s  | %s\n", article.getId(), article.getTitle(), article.getRegDate());
+            System.out.printf("%-5d| %s (%d)  | %s\n", article.getId(), article.getTitle(), article.getViewCount(), article.getRegDate());
        }
     }
 
@@ -33,6 +33,8 @@ public class ArticleService {
             System.out.printf("%d번 게시글은 존재하지 않습니다.\n", id);
             return ;
         }
+
+        articleRepository.addViewCount(foundArticle);
         System.out.printf("번호: %d\n",  foundArticle.getId());
         System.out.printf("제목: %s\n",   foundArticle.getTitle());
         System.out.printf("내용: %s\n",   foundArticle.getContent());
