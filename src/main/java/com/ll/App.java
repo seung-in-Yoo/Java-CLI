@@ -33,6 +33,8 @@ public class App {
             case "update" -> controller.update(rq);
             case "delete" -> controller.delete(rq);
             case "search" -> controller.search(rq);
+            case "save" -> controller.save();
+            case "load" -> controller.load();
             default -> System.out.println("정확한 명령어를 입력해주세요.");
         }
         return false;

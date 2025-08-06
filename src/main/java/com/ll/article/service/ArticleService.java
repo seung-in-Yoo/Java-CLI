@@ -3,6 +3,7 @@ package com.ll.article.service;
 import com.ll.article.entity.Article;
 import com.ll.article.repository.ArticleRepository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,5 +45,12 @@ public class ArticleService {
         List<Article> reversed = new ArrayList<>(found);
         Collections.reverse(reversed);
         return reversed;
+    }
+
+    public void saveFile(String fileName) throws IOException {
+        repository.saveFile(fileName);
+    }
+    public void loadFile(String fileName) throws IOException {
+        repository.loadFile(fileName);
     }
 }

@@ -4,6 +4,7 @@ import com.ll.Rq;
 import com.ll.article.entity.Article;
 import com.ll.article.service.ArticleService;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -121,4 +122,25 @@ public class ArticleController {
             System.out.println("검색 결과가 없습니다.");
         }
     }
+
+    // 파일 저장
+    public void save() {
+        try {
+            service.saveFile("articles.txt");
+            System.out.println("저장되었습니다.");
+        } catch (IOException e) {
+            System.out.println("저장 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+
+    // 파일 불러오기
+    public void load() {
+        try {
+            service.loadFile("articles.txt");
+            System.out.println("불러오기 완료.");
+        } catch (IOException e) {
+            System.out.println("불러오기 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+
 }
