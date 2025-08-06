@@ -15,12 +15,14 @@ public class Article {
     private String title;
     @Setter // 읽기 전용인 필드는 수정하지 못하도록 명시적으로 수정하는곳만 setter 처리
     private String content;
+    private int viewCount;
 
     private Article(int id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.regDate = LocalDate.now(); // 정적 팩토리 메서드에서 날짜 생성하도록 리팩토링
+        this.viewCount = 0; // 조회수는 초기값 0으로
     }
 
     public static Article of(int id, String title, String content) {
@@ -31,4 +33,6 @@ public class Article {
         this.title = title;
         this.content = content;
     }
+
+    public void increaseViewCount() { viewCount++; }
 }
