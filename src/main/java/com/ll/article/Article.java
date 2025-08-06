@@ -1,10 +1,13 @@
 package com.ll.article;
 
+import com.ll.comment.Comment;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,13 +19,15 @@ public class Article {
     @Setter(AccessLevel.NONE)
     private final LocalDate regDate;
     private int count;
+    private List<Comment> comments;
 
     public Article(int id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
-        regDate = LocalDate.now();
-        count = 0;
+        this.regDate = LocalDate.now();
+        this.count = 0;
+        this.comments = new ArrayList<>();
     }
 
     @Override

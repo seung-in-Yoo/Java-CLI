@@ -34,4 +34,8 @@ public class ArticleService {
     public List<Article> search(String keyword) {
         return articleRepository.findByTitleOrContent(keyword);
     }
+
+    public Article writeComment(Article article, String content) {
+        return articleRepository.saveComment(article, content);
+    }
 }

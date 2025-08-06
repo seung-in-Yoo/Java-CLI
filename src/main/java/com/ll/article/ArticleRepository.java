@@ -1,5 +1,7 @@
 package com.ll.article;
 
+import com.ll.comment.Comment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,5 +48,11 @@ public class ArticleRepository {
             }
         }
         return searchArticles;
+    }
+
+    public Article saveComment(Article article, String content) {
+        Comment comment = new Comment(article.getComments().size() + 1, content);
+        article.getComments().add(comment);
+        return article;
     }
 }

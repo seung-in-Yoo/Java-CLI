@@ -1,5 +1,7 @@
 package com.ll.article;
 
+import com.ll.comment.Comment;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,11 +41,15 @@ public class ArticleController {
             return;
         }
         articleService.view(article); // 조회
-        System.out.println("번호: " + article.getId());
-        System.out.println("제목: " + article.getTitle());
-        System.out.println("내용: " + article.getContent());
-        System.out.println("등록일: " + article.getRegDate());
-        System.out.println("조회수: " + article.getCount());
+        printDetail(article);
+        while (true) {
+            System.out.println("[comment + 댓글]을 입력하시면 댓글 입력 가능 / 이외 입력 시 뒤로");
+            String command = scanner.nextLine();
+            if (command.startsWith("comment")) {
+                articleService.writeComment(article, command.split(" ")[1]);
+                printDetail(article);
+            } else return;
+        }
     }
 
     public void update (int id) {
@@ -90,6 +96,18 @@ public class ArticleController {
         System.out.println("----------------------------------");
         for (Article article : articles) {
             System.out.println(article.getId() + " | " + article.getTitle() + " | " + article.getRegDate() + " | " + article.getCount());
+        }
+    }
+
+    private void printDetail (Article article) {
+        System.out.println("번호: " + article.getId());
+        System.out.println("제목: " + article.getTitle());
+        System.out.println("내용: " + article.getContent());
+        System.out.println("등록일: " + article.getRegDate());
+        System.out.println("조회수: " + article.getCount());
+        System.out.println("================ 댓글 ================");
+        for (Comment comment : article.getComments()) {
+            System.out.println(comment.getId() + ". " + comment.getContent() + " | " + comment.getRegDate());
         }
     }
 }

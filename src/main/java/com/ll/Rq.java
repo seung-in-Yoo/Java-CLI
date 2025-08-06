@@ -26,21 +26,21 @@ public class Rq {
             } else articleController.list();
         }
         else if (command.startsWith("delete")) {
-            int id = Integer.parseInt(parseId(command));
-            if (id > 0)
-                articleController.delete(id);
+            String cmd = parseId(command);
+            if (cmd != null)
+                articleController.delete(Integer.parseInt(cmd));
             else System.out.println("잘못된 명령어입니다.");
         }
         else if (command.startsWith("update")) {
-            int id = Integer.parseInt(parseId(command));
-            if (id > 0)
-                articleController.update(id);
+            String cmd = parseId(command);
+            if (cmd != null)
+                articleController.update(Integer.parseInt(cmd));
             else System.out.println("잘못된 명령어입니다.");
         }
         else if (command.startsWith("detail")) {
-            int id = Integer.parseInt(parseId(command));
-            if (id > 0)
-                articleController.detail(id);
+            String cmd = parseId(command);
+            if (cmd != null)
+                articleController.detail(Integer.parseInt(cmd));
             else System.out.println("잘못된 명령어입니다.");
         }
         else if (command.startsWith("search")) {
