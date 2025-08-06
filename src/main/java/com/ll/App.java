@@ -1,6 +1,7 @@
 package com.ll;
 
 import com.ll.service.ArticleService;
+
 import java.util.Scanner;
 
 public class App {
@@ -12,9 +13,9 @@ public class App {
         while (true) {
             System.out.print("명령어: ");
             String cmd = sc.nextLine().trim();
-            String[] parts = cmd.split(" ", 2);
-            String action = parts[0];
-            String arg    = parts.length > 1 ? parts[1] : "";
+            Rq rq = new Rq(cmd);
+            String action = rq.getAction();
+            String arg = rq.getArg();
 
             if (action.equals("exit")) {
                 System.out.println("프로그램을 종료합니다.");
@@ -70,7 +71,6 @@ public class App {
     private void doUpdate(String arg) {
         try {
             int id = Integer.parseInt(arg);
-            System.out.print(service.detail(id));
             System.out.printf("제목 (현재: %s): ", service.detailTitle(id)); // service.detailTitle 추가 필요
             String nt = sc.nextLine().trim();
             System.out.printf("내용 (현재: %s): ", service.detailContent(id)); // service.detailContent 추가 필요
