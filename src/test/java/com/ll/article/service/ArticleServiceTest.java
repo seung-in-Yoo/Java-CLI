@@ -99,4 +99,22 @@ public class ArticleServiceTest {
         service.increaseViewCount(article);
         assertThat(article.getViewCount()).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("검색 키워드로 제목 또는 내용을 포함하는 게시글 조회")
+    void t7() {
+        ArticleService service = new ArticleService();
+
+        service.writeArticle("자바", "자바 CLI 게시판 만들기");
+        service.writeArticle("스프링 공부", "스프링 프로젝트 진행하기");
+        service.writeArticle("리액트", "리액트 투두 앱 만들기");
+        service.writeArticle("자바 중급", "자바 중급 강의 듣기");
+
+        List<Article> results = service.searchArticles("자바");
+
+        assertThat(results).hasSize(2);
+        // 검색은 정확히 값이 일치해야 하는게 아니고 키워드만 포함되면 되니깐 .contains 사용
+        assertThat(results.get(0).getTitle()).contains("자바");
+        assertThat(results.get(1).getTitle()).contains("자바");
+    }
 }
