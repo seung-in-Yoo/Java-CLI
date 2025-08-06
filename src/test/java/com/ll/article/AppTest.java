@@ -17,9 +17,9 @@ public class AppTest {
         assertEquals(1, app.getArticles().size());   // 1개 등록됐는지
         Article article = app.getArticles().get(0);
 
-        assertEquals("제목1", article.title);
-        assertEquals("내용1", article.content);
-        assertEquals("2025-08-06", article.regDate);
-        assertEquals(1, article.id);
+        assertEquals("제목1", article.getTitle());
+        assertEquals("내용1", article.getContent());
+        assertEquals("2025-08-06", article.getRegDate());
+        assertEquals(1, article.getId());
     }
 }

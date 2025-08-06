@@ -13,4 +13,16 @@ public class Article {
         this.content = content;
         this.regDate = regDate;
     }
+    public int getId() {
+        return id;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public String getContent() {
+        return content;
+    }
+    public String getRegDate() {
+        return regDate;
+    }
 }

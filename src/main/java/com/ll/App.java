@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class App {
     Scanner sc = new Scanner(System.in);
-    private List<Article> articles = new ArrayList<Article>();
+    private final List<Article> articles = new ArrayList<Article>();
     private int lastId = 0;
     public void run() {
         System.out.println("== 게시판 앱 만들기 ==");
@@ -17,8 +17,7 @@ public class App {
         return articles;
     }
     public void write(String title, String content, String regDate) {
-        int id = ++lastId;
-        Article article = new Article(id, title, content, regDate);
+        Article article = new Article(++lastId, title, content, regDate);
         articles.add(article);
 
     }
