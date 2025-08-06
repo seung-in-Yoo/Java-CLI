@@ -36,4 +36,10 @@ public class ArticleRepository {
     public void addViewCount(Article foundArticle) {
         foundArticle.addViewCount();
     }
+
+    public List<Article> getSearchArticleList(String keyword) {
+        return articles.stream()
+                .filter(article -> (article.getTitle().contains(keyword) || article.getContent().contains(keyword)))
+                .toList();
+    }
 }

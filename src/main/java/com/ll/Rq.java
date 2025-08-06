@@ -2,17 +2,21 @@ package com.ll;
 
 public class Rq {
     private final String cmd;
-    private int id = 0;
+    private String keyword = null;
 
     public Rq(String input) {
         String[] inputs  = input.split(" ",2);
         cmd = inputs[0];
-        try {
-            if (inputs.length>1) id = Integer.parseInt(inputs[1]);
-        } catch (NumberFormatException e) {
-            System.out.println("id 값은 숫자만 가능합니다.");
-        }
+        if (inputs.length>1) keyword = inputs[1];
+    }
 
+    boolean isInteger(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public String getCmd() {
@@ -20,6 +24,11 @@ public class Rq {
     }
 
     public int getId(int defaultValue) {
-        return id==0 ? defaultValue : id;
+        if (isInteger(keyword)) return keyword==null ? defaultValue : Integer.parseInt(keyword);
+        return defaultValue;
+    }
+
+    public String getKeyword(String defaultValue) {
+        return keyword==null ? defaultValue : keyword;
     }
 }

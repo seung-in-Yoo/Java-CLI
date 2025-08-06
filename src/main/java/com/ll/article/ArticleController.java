@@ -52,4 +52,8 @@ public class ArticleController {
 
         articleService.deleteArticle(findId);
     }
+
+    public void actionSearch(Rq rq) {
+        articleService.searchArticle(rq.getKeyword(""));
+    }
 }

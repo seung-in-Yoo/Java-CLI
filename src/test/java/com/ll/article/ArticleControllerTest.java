@@ -177,7 +177,76 @@ public class ArticleControllerTest {
         String now = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now());
 
         assertThat(out.toString())
-                .contains("2    | C++ 공부  | %s".formatted(now))
-                .doesNotContain("1    | 자바 공부  | %s".formatted(now));
+                .contains("2    | C++ 공부 (0)  | %s".formatted(now))
+                .doesNotContain("1    | 자바 공부 (0)  | %s".formatted(now));
+    }
+
+    @Test
+    @DisplayName("게시글 검색")
+    void t6() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream defaultPrint = System.out;
+        System.setOut(new PrintStream(out));
+
+        String input = """
+                자바 공부
+                자바 텍스트 게시판 만들기
+                C++ 공부
+                C++ 학습은 정말 유용하다.
+                JS 공부
+                JS 학습도 정말 유용하다.
+                """;
+
+        Rq rq1 = new Rq("search 정말");
+
+        ArticleController articleController = new ArticleController(new Scanner(input));
+        articleController.actionWrite();
+        articleController.actionWrite();
+        articleController.actionWrite();
+
+        articleController.actionSearch(rq1);
+
+        String now = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now());
+
+        assertThat(out.toString())
+                .contains("3    | JS 공부 (0)  | %s".formatted(now))
+                .contains("2    | C++ 공부 (0)  | %s".formatted(now))
+                .contains("=> 검색 결과 : 2 건")
+                .doesNotContain("1    | 자바 공부 (0)  | %s".formatted(now));
+    }
+
+    @Test
+    @DisplayName("게시글 검색 - 검색 결과 없음")
+    void t7() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream defaultPrint = System.out;
+        System.setOut(new PrintStream(out));
+
+        String input = """
+                자바 공부
+                자바 텍스트 게시판 만들기
+                C++ 공부
+                C++ 학습은 정말 유용하다.
+                JS 공부
+                JS 학습도 정말 유용하다.
+                """;
+
+        Rq rq1 = new Rq("search 검색결과없음");
+
+        ArticleController articleController = new ArticleController(new Scanner(input));
+        articleController.actionWrite();
+        articleController.actionWrite();
+        articleController.actionWrite();
+
+        articleController.actionSearch(rq1);
+
+        String now = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now());
+
+        assertThat(out.toString())
+                .contains("-----------------------------")
+                .contains("=> 검색 결과 : 0 건")
+                .doesNotContain("3    | JS 공부 (0)  | %s".formatted(now))
+                .doesNotContain("2    | C++ 공부 (0)  | %s".formatted(now))
+                .doesNotContain("1    | 자바 공부 (0)  | %s".formatted(now));
     }
 }

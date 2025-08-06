@@ -1,5 +1,7 @@
 package com.ll.article;
 
+import com.ll.Rq;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,11 +22,8 @@ public class ArticleService {
 
     void listArticle() {
        List<Article> articleList = articleRepository.getArticleList();
-       System.out.println("번호 | 제목(조회수)       | 등록일");
-       System.out.println("-----------------------------");
-       for (Article article : articleList) {
-            System.out.printf("%-5d| %s (%d)  | %s\n", article.getId(), article.getTitle(), article.getViewCount(), article.getRegDate());
-       }
+
+        printArticleList(articleList, "=> 총 %d개의 게시글은 존재합니다.".formatted(articleList.size()));
     }
 
     void showDetails(int id) {
@@ -41,10 +40,20 @@ public class ArticleService {
         System.out.printf("등록일: %s\n", foundArticle.getRegDate());
     }
 
+    void printArticleList(List<Article> articleList, String printMessage) {
+        System.out.println("번호 | 제목(조회수)       | 등록일");
+        System.out.println("-----------------------------");
+        for (Article article : articleList) {
+            System.out.printf("%-5d| %s (%d)  | %s\n", article.getId(), article.getTitle(), article.getViewCount(), article.getRegDate());
+        }
+        System.out.println("-----------------------------");
+        System.out.println(printMessage);
+    }
+
     void updateArticle(int id) {
         Article foundArticle = articleRepository.findArticleFromList(id);
         if (foundArticle == null) {
-            System.out.printf("%d번 게시글은 존재하지 않습니다.\n", id);
+            System.out.printf("=> %d번 게시글은 존재하지 않습니다.\n", id);
             return ;
         }
 
@@ -67,5 +76,11 @@ public class ArticleService {
 
         articleRepository.deleteArticleFromList(foundArticle);
         System.out.println("=> 게시글이 삭제되었습니다.");
+    }
+
+    public void searchArticle(String keyword) {
+        List<Article> searchList = articleRepository.getSearchArticleList(keyword);
+
+        printArticleList(searchList, "=> 검색 결과 : %d 건".formatted(searchList.size()));
     }
 }

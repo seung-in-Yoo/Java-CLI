@@ -37,4 +37,20 @@ public class RqTest {
 
         assertThat(rq.getId(0)).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("Rq keyword 추출 1")
+    void t5() {
+        Rq rq = new Rq("search hello");
+
+        assertThat(rq.getKeyword("")).isEqualTo("hello");
+    }
+
+    @Test
+    @DisplayName("Rq keyword 추출 2 - id값 없음")
+    void t6() {
+        Rq rq = new Rq("search");
+
+        assertThat(rq.getKeyword("")).isEqualTo("");
+    }
 }
