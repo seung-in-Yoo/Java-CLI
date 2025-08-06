@@ -21,4 +21,10 @@ public class App {
         articles.add(article);
 
     }
+    public void list() {
+        for (int i = articles.size() - 1; i >= 0; i--) {
+            Article a = articles.get(i);
+            System.out.printf("%d / %s / %s\n", a.getId(), a.getTitle(), a.getRegDate());
+        }
+    }
 }
