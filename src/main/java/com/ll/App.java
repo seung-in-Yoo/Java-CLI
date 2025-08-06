@@ -40,6 +40,18 @@ public class App {
                     }
                 }
             } else if (cmd.startsWith("update")) {
+                if (arg.isEmpty()) {
+                    System.out.println("사용법: update [id]");
+                } else {
+                    try {
+                        int id = Integer.parseInt(arg);
+                        update(id);
+                    } catch (NumberFormatException e) {
+                        System.out.println("ID는 숫자로 입력해주세요.");
+                    }
+                }
+
+
 
             } else if (cmd.startsWith("delete")) {
 
@@ -91,6 +103,22 @@ public class App {
                 System.out.println("제목: " + a.getTitle());
                 System.out.println("내용: " + a.getContent());
                 System.out.println("등록일: " + a.getRegDate());
+                return;
+            }
+        }
+        System.out.println(id + "번 게시글은 존재하지 않습니다.");
+    }
+    private void update(int id) {
+        for (Article a : articles) {
+            if (a.getId() == id) {
+                System.out.printf("제목 (현재: %s): ", a.getTitle());
+                String newTitle = sc.nextLine();
+                System.out.printf("내용 (현재: %s): ", a.getContent());
+                String newContent = sc.nextLine();
+
+                a.setTitle(newTitle);
+                a.setContent(newContent);
+                System.out.println("게시글이 수정되었습니다.");
                 return;
             }
         }
