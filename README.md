@@ -111,9 +111,9 @@ src/
 ## ✅ 추가 기능 구현 예시
 
 - [x]  게시글 조회수 기능 (`count` 필드 추가)
-- [ ]  게시글 검색 기능 (`search [keyword]`)
+- [x]  게시글 검색 기능 (`search [keyword]`)
 - [ ]  파일 저장/불러오기 (`BufferedWriter`, `BufferedReader` 등 활용)
-- [ ]  게시글 정렬 옵션 (날짜순, 번호순 등)
+- [x]  게시글 정렬 옵션 (날짜순, 번호순 등)
 
 ---
 
