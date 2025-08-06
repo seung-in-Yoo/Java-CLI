@@ -21,13 +21,19 @@ public class ArticleService {
         List<Article> articles = repository.findAll();
         List<Article> sorted = new ArrayList<>(articles);
 
-        if (option == null) option = ArticleSortOption.NUMBER_DESC; // 기본값: 최신순
+        if (option == null) { option = ArticleSortOption.NUMBER_DESC; } // 기본값: 최신순
 
         switch (option) {
             case NUMBER_ASC -> sorted.sort(Comparator.comparingInt(Article::getId));
             case NUMBER_DESC -> sorted.sort(Comparator.comparingInt(Article::getId).reversed());
-            case DATE_ASC -> sorted.sort(Comparator.comparing(Article::getRegDate));
-            case DATE_DESC -> sorted.sort(Comparator.comparing(Article::getRegDate).reversed());
+            case DATE_ASC -> sorted.sort(
+                    Comparator.comparing(Article::getRegDate)
+                            .thenComparing(Article::getId)
+            );
+            case DATE_DESC -> sorted.sort(
+                    Comparator.comparing(Article::getRegDate).reversed()
+                            .thenComparing(Article::getId, Comparator.reverseOrder())
+            );
         }
         return sorted;
     }

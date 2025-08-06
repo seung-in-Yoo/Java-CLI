@@ -146,11 +146,14 @@ public class ArticleServiceTest {
         assertThat(dateDesc.get(1).getId()).isEqualTo(2);
         assertThat(dateDesc.get(2).getId()).isEqualTo(1);
 
+
+
         // 날짜 오름차순
         List<Article> dateAsc = service.listArticles(ArticleSortOption.DATE_ASC);
         assertThat(dateAsc.get(0).getId()).isEqualTo(1);
-        assertThat(dateDesc.get(1).getId()).isEqualTo(2);
-        assertThat(dateDesc.get(2).getId()).isEqualTo(3);
+        assertThat(dateAsc.get(1).getId()).isEqualTo(2);
+        assertThat(dateAsc.get(2).getId()).isEqualTo(3);
+
     }
 
 }
