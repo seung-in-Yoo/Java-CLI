@@ -6,6 +6,7 @@ import com.ll.article.repository.ArticleRepository;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ArticleService {
@@ -15,11 +16,20 @@ public class ArticleService {
         return repository.save(title, content);
     }
 
-    public List<Article> listArticles() {
+    public List<Article> listArticles(String order) {
         List<Article> articles = repository.findAll();
-        List<Article> reversed = new ArrayList<>(articles);
-        Collections.reverse(reversed);
-        return reversed;
+
+        List<Article> sorted = new ArrayList<>(articles);
+
+        // 기본값은 최신순으로 하고, 정렬하려고 하는 입력값이 들어오면 switch문을 통해서 명령 처리
+        switch ((order == null ? "number-desc" : order).toLowerCase()) {
+            case "number-asc" -> sorted.sort(Comparator.comparingInt(Article::getId));
+            case "number-desc" -> sorted.sort(Comparator.comparingInt(Article::getId).reversed());
+            case "date-asc" -> sorted.sort(Comparator.comparing(Article::getRegDate));
+            case "date-desc" -> sorted.sort(Comparator.comparing(Article::getRegDate).reversed());
+            default -> sorted.sort(Comparator.comparingInt(Article::getId).reversed());
+        }
+        return sorted;
     }
 
     public Article findArticleById(int id) {

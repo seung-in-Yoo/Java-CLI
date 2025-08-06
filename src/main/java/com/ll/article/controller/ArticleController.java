@@ -32,8 +32,9 @@ public class ArticleController {
     }
 
     // 게시글 목록 출력
-    public void list() {
-        List<Article> articles = service.listArticles();
+    public void list(Rq rq) {
+        String order = rq.getKeyword();
+        List<Article> articles = service.listArticles(order);
 
         System.out.println("번호 | 제목       | 등록일");
         System.out.println("-----------------------------");

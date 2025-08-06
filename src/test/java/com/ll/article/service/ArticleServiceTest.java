@@ -32,7 +32,7 @@ public class ArticleServiceTest {
         service.writeArticle("제목1", "내용1");
         service.writeArticle("제목2", "내용2");
 
-        List<Article> articles = service.listArticles();
+        List<Article> articles = service.listArticles("number-desc"); // 기본값: 최신순
 
         assertThat(articles).hasSize(2);
         assertThat(articles.get(0).getTitle()).isEqualTo("제목2");
@@ -80,7 +80,7 @@ public class ArticleServiceTest {
 
         service.deleteArticle(article1.getId());
 
-        List<Article> articles = service.listArticles();
+        List<Article> articles = service.listArticles("number-desc"); // 기본값: 최신순
 
         assertThat(articles).hasSize(1);
         assertThat(articles.get(0).getId()).isEqualTo(article2.getId());

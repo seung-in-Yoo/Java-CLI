@@ -28,7 +28,7 @@ public class App {
                 return true;
             }
             case "write" -> controller.write();
-            case "list" -> controller.list();
+            case "list" -> controller.list(rq);
             case "detail" -> controller.detail(rq);
             case "update" -> controller.update(rq);
             case "delete" -> controller.delete(rq);
