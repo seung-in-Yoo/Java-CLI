@@ -117,4 +117,35 @@ public class ArticleServiceTest {
         assertThat(results.get(0).getTitle()).contains("자바");
         assertThat(results.get(1).getTitle()).contains("자바");
     }
+
+    @Test
+    @DisplayName("게시글 정렬 기능 (번호 및 날짜에 따라서 오름차순,내림차순 정렬 가능)")
+    void t8() {
+        // 여기도 역시 정확한 값에 따라 일치해야 하기 때문에 isEqualTo 사용
+        ArticleService service = new ArticleService();
+
+        service.writeArticle("A", "a");
+        service.writeArticle("B", "b");
+        service.writeArticle("C", "c");
+
+        // 번호 내림차순
+        List<Article> desc = service.listArticles("number-desc");
+        assertThat(desc.get(0).getId()).isEqualTo(3);
+        assertThat(desc.get(1).getId()).isEqualTo(2);
+        assertThat(desc.get(2).getId()).isEqualTo(1);
+
+        // 번호 오름차순
+        List<Article> asc = service.listArticles("number-asc");
+        assertThat(asc.get(0).getId()).isEqualTo(1);
+        assertThat(asc.get(1).getId()).isEqualTo(2);
+        assertThat(asc.get(2).getId()).isEqualTo(3);
+
+        // 날짜 내림차순
+        List<Article> dateDesc = service.listArticles("date-desc");
+        assertThat(dateDesc.get(0).getId()).isEqualTo(3);
+
+        // 날짜 오름차순
+        List<Article> dateAsc = service.listArticles("date-asc");
+        assertThat(dateAsc.get(0).getId()).isEqualTo(1);
+    }
 }
